@@ -4,6 +4,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import Navbar from "./components/site/Navbar";
 import Footer from "./components/site/Footer";
+import AiChat from "./components/site/AiChat";
 
 const aquarium = localFont({
   src: "./fonts/AQUARIUM.ttf",
@@ -38,6 +39,7 @@ export default function RootLayout({
         <Navbar />
         {children}
         <Footer />
+        <AiChat />
       </body>
     </html>
   );
