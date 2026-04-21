@@ -121,7 +121,7 @@ export default function AiChat() {
         onClick={() => setOpen((o) => !o)}
         aria-label="Open studio assistant"
         whileTap={{ scale: 0.9 }}
-        className="fixed bottom-[88px] right-5 md:bottom-8 md:right-8 z-50 group"
+        className="fixed bottom-[100px] right-5 md:bottom-8 md:right-8 z-50 group"
       >
         <div className="relative w-14 h-14 rounded-full bg-fg flex items-center justify-center shadow-[0_8px_32px_rgba(0,0,0,0.5)] transition-all duration-300 group-hover:scale-105">
           <AnimatePresence mode="wait">
@@ -156,7 +156,7 @@ export default function AiChat() {
             <motion.div
               key="backdrop"
               initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-              className="fixed inset-0 z-40 bg-black/60 backdrop-blur-sm md:hidden"
+              className="fixed inset-0 z-40 bg-black/40 backdrop-blur-sm"
               onClick={() => setOpen(false)}
             />
 
@@ -165,11 +165,11 @@ export default function AiChat() {
               initial={{ opacity: 0, y: 20, scale: 0.98 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: 20, scale: 0.98 }}
-              transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+              transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] as const }}
               className="fixed z-50 flex flex-col overflow-hidden
-                /* mobile */ bottom-0 left-0 right-0 rounded-t-3xl
-                /* desktop */ md:bottom-28 md:right-8 md:left-auto md:w-[400px] md:rounded-3xl md:shadow-[0_32px_80px_rgba(0,0,0,0.6)]"
-              style={{ height: "min(600px, 85vh)" }}
+                bottom-[72px] left-3 right-3 rounded-3xl
+                md:bottom-28 md:right-8 md:left-auto md:w-[400px] md:rounded-3xl md:shadow-[0_32px_80px_rgba(0,0,0,0.6)]"
+              style={{ height: "min(540px, calc(100vh - 160px))" }}
             >
               {/* Header */}
               <div className="relative bg-ink/95 backdrop-blur-xl border-b hairline px-6 py-5 shrink-0 flex items-center justify-between">

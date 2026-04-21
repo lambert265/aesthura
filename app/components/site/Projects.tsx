@@ -5,35 +5,31 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { fadeUpView } from "../../lib/animations";
+import { projects, type Project } from "../../lib/projects";
 
-const projects = [
-  { id: 1, img: "/project-1.jpg", tag: "Residential", title: "The Aldgate Residence", location: "London", year: "2024" },
-  { id: 2, img: "/project-2.jpg", tag: "Kitchen",     title: "Maison Verlaine",        location: "Paris",  year: "2024" },
-  { id: 3, img: "/project-3.jpg", tag: "Bathroom",    title: "Villa Serenova",          location: "Milan",  year: "2023" },
-  { id: 4, img: "/project-4.jpg", tag: "Hospitality", title: "The Dining Room at No.9", location: "Dubai",  year: "2023" },
-];
-
-function ProjectCard({ project, delay }: { project: typeof projects[0]; delay: number }) {
+function ProjectCard({ project, delay }: { project: Project; delay: number }) {
   return (
     <motion.div className="group flex flex-col gap-3" {...fadeUpView(delay)}>
-      <div className="relative w-full overflow-hidden" style={{ aspectRatio: "4/5" }}>
-        <Image
-          src={project.img}
-          alt={project.title}
-          fill
-          className="object-cover transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.03]"
-        />
-        <div className="absolute top-3 right-3 md:top-4 md:right-4 w-8 h-8 md:w-9 md:h-9 rounded-full bg-ink/60 backdrop-blur-sm flex items-center justify-center transition-transform duration-300 group-hover:-translate-y-1 group-hover:translate-x-1">
-          <ArrowUpRight size={14} className="text-fg" />
+      <Link href={`/projects/${project.slug}`} className="flex flex-col gap-3">
+        <div className="relative w-full overflow-hidden" style={{ aspectRatio: "4/5" }}>
+          <Image
+            src={project.img}
+            alt={project.title}
+            fill
+            className="object-cover transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.03]"
+          />
+          <div className="absolute top-3 right-3 md:top-4 md:right-4 w-8 h-8 md:w-9 md:h-9 rounded-full bg-ink/60 backdrop-blur-sm flex items-center justify-center transition-transform duration-300 group-hover:-translate-y-1 group-hover:translate-x-1">
+            <ArrowUpRight size={14} className="text-fg" />
+          </div>
         </div>
-      </div>
-      <div className="flex flex-col gap-1 px-1">
-        <span className="eyebrow text-fg/40 text-[10px]">{project.tag}</span>
-        <h3 className="display-text text-fg text-2xl md:text-3xl leading-none">{project.title}</h3>
-        <span className="font-body font-light text-[11px] md:text-[12px] text-fg/40 tracking-[0.04em]">
-          {project.location} · {project.year}
-        </span>
-      </div>
+        <div className="flex flex-col gap-1 px-1">
+          <span className="eyebrow text-fg/40 text-[10px]">{project.tag}</span>
+          <h3 className="display-text text-fg text-2xl md:text-3xl leading-none">{project.title}</h3>
+          <span className="font-body font-light text-[11px] md:text-[12px] text-fg/40 tracking-[0.04em]">
+            {project.location} · {project.year}
+          </span>
+        </div>
+      </Link>
     </motion.div>
   );
 }

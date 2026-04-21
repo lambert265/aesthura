@@ -1,21 +1,80 @@
 "use client";
 
-import Image from "next/image";
+import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { EASE } from "../lib/animations";
 
+const FADE_DURATION = 1.2; // seconds before end to start fade-out
+
 export default function Hero() {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [fading, setFading] = useState(false);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    const onTimeUpdate = () => {
+      if (!video.duration) return;
+      const remaining = video.duration - video.currentTime;
+      if (remaining <= FADE_DURATION && !fading) {
+        setFading(true);
+      }
+    };
+
+    const onSeeked = () => {
+      // after loop restarts, fade back in
+      if (video.currentTime < 0.5) {
+        setFading(false);
+      }
+    };
+
+    video.addEventListener("timeupdate", onTimeUpdate);
+    video.addEventListener("seeked", onSeeked);
+    video.addEventListener("play", () => setFading(false));
+
+    return () => {
+      video.removeEventListener("timeupdate", onTimeUpdate);
+      video.removeEventListener("seeked", onSeeked);
+    };
+  }, [fading]);
+
   return (
     <section className="relative w-full min-h-screen flex flex-col">
 
-      {/* Background — scale 1.12 → 1 */}
+      {/* Background video — scale 1.12 → 1 */}
       <motion.div
         className="absolute inset-0"
         initial={{ scale: 1.12 }}
         animate={{ scale: 1 }}
         transition={{ duration: 2.4, ease: EASE.elegant }}
       >
-        <Image src="/hero.jpg" alt="Interior" fill priority className="object-cover object-center" />
+        <video
+          ref={videoRef}
+          autoPlay
+          muted
+          loop
+          playsInline
+          style={{
+            position: "absolute",
+            inset: 0,
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+            objectPosition: "center",
+            opacity: fading ? 0 : 1,
+            transition: `opacity ${FADE_DURATION}s ease`,
+          }}
+        >
+          <source src="/hero.mp4" type="video/mp4" />
+          <source src="/hero.webm" type="video/webm" />
+        </video>
+
+        {/* Static poster shown during fade — prevents black flash */}
+        <div
+          className="absolute inset-0 bg-cover bg-center"
+          style={{ backgroundImage: "url('/hero.jpg')", zIndex: -1 }}
+        />
       </motion.div>
 
       {/* Gradient overlay */}
@@ -34,7 +93,6 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.1, delay: 0.15, ease: EASE.elegant }}
         >
-          {/* Mobile: simple stack */}
           <div className="md:hidden text-[11.5vw]">
             <div>Aesthetics</div>
             <div>in every</div>
@@ -42,7 +100,6 @@ export default function Hero() {
             <div>ideal</div>
             <div className="text-right">interior</div>
           </div>
-          {/* Desktop: spaced layout */}
           <div className="hidden md:block text-[8.4vw]">
             <div>Aesthetics in every</div>
             <div className="flex items-baseline">
@@ -59,7 +116,6 @@ export default function Hero() {
         {/* Bottom row */}
         <div className="mt-8 md:mt-0 flex flex-col md:flex-row md:items-end md:justify-between gap-6 md:gap-0">
 
-          {/* Paragraphs */}
           <div className="flex flex-col sm:grid sm:grid-cols-2 gap-4 sm:gap-x-6 md:gap-x-8 max-w-[480px]">
             <motion.p
               className="font-body font-light text-[12px] md:text-[14px] leading-relaxed text-fg/80 max-w-[220px]"
@@ -81,7 +137,6 @@ export default function Hero() {
             </motion.p>
           </div>
 
-          {/* CTA */}
           <motion.a
             href="/contact"
             className="flex-shrink-0 flex items-center justify-center self-start md:self-auto w-36 h-36 md:w-52 md:h-52 rounded-full border border-fg/50 hover:border-fg font-body font-light text-fg text-[11px] md:text-[13px] tracking-[0.06em] text-center transition-[border-color,background] duration-500 hover:bg-fg/10"

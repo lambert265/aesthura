@@ -9,19 +9,31 @@ const config: Config = {
   theme: {
     extend: {
       fontFamily: {
-        display:  ["var(--font-display)", "sans-serif"],
-        body:     ["var(--font-body)", "sans-serif"],
-        aquarium: ["var(--font-aquarium)", "sans-serif"],
+        display:   ["var(--font-display)", "sans-serif"],
+        body:      ["var(--font-body)", "sans-serif"],
+        aquarium:  ["var(--font-aquarium)", "sans-serif"],
       },
       colors: {
-        bg:       "hsl(0 0% 7%)",
-        fg:       "hsl(40 10% 96%)",
-        ink:      "hsl(0 0% 4%)",
-        paper:    "hsl(40 10% 96%)",
-        hairline: "hsl(40 8% 96% / 0.18)",
+        bg:         "hsl(0 0% 7%)",
+        fg:         "hsl(40 10% 96%)",
+        ink:        "hsl(0 0% 4%)",
+        paper:      "hsl(40 10% 96%)",
+        hairline:   "hsl(40 8% 96% / 0.18)",
+        /* ── Admin design system tokens ── */
+        background: "hsl(var(--admin-background))",
+        foreground: "hsl(var(--admin-foreground))",
+        card:       "hsl(var(--admin-card))",
+        surface:    "hsl(var(--admin-surface))",
+        "surface-2":"hsl(var(--admin-surface-2))",
+        primary:    "hsl(var(--admin-primary))",
+        accent:     "hsl(var(--admin-accent))",
+        muted:      "hsl(var(--admin-muted))",
+        border:     "hsl(var(--admin-border))",
+        ring:       "hsl(var(--admin-ring))",
       },
       borderRadius: {
         DEFAULT: "0.25rem",
+        admin:   "0.75rem",
       },
       animation: {
         marquee:       "marquee 40s linear infinite",
