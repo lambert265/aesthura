@@ -28,8 +28,8 @@ function NavLinks({
   pathname,
 }: {
   links: { href: string; label: string }[];
-  pillRef?: React.RefObject<HTMLSpanElement | null>;
-  navRef?: React.RefObject<HTMLUListElement | null>;
+  pillRef?: React.RefObject<HTMLSpanElement>;
+  navRef?: React.RefObject<HTMLUListElement>;
   pathname: string;
 }) {
   return (
