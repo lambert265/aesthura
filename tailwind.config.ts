@@ -8,9 +8,43 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        display:  ["var(--font-display)", "sans-serif"],
+        body:     ["var(--font-body)", "sans-serif"],
+        aquarium: ["var(--font-aquarium)", "sans-serif"],
+      },
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+        bg:       "hsl(0 0% 7%)",
+        fg:       "hsl(40 10% 96%)",
+        ink:      "hsl(0 0% 4%)",
+        paper:    "hsl(40 10% 96%)",
+        hairline: "hsl(40 8% 96% / 0.18)",
+      },
+      borderRadius: {
+        DEFAULT: "0.25rem",
+      },
+      animation: {
+        marquee:       "marquee 40s linear infinite",
+        "rotate-slow": "rotate-slow 24s linear infinite",
+        "pulse-soft":  "pulse-soft 4s ease-in-out infinite",
+      },
+      keyframes: {
+        marquee: {
+          "0%":   { transform: "translateX(0)" },
+          "100%": { transform: "translateX(-50%)" },
+        },
+        "rotate-slow": {
+          "0%":   { transform: "rotate(0deg)" },
+          "100%": { transform: "rotate(360deg)" },
+        },
+        "pulse-soft": {
+          "0%, 100%": { opacity: "0.4" },
+          "50%":      { opacity: "0.8" },
+        },
+      },
+      transitionTimingFunction: {
+        elegant: "cubic-bezier(0.22, 1, 0.36, 1)",
+        smooth:  "cubic-bezier(0.65, 0, 0.35, 1)",
       },
     },
   },
