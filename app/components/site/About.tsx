@@ -30,6 +30,7 @@ export default function About() {
           alt="Studio"
           fill
           priority
+          sizes="100vw"
           className="object-cover object-center"
         />
         <div

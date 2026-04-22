@@ -1,11 +1,13 @@
+import dynamic from "next/dynamic";
 import Hero from "./components/Hero";
 import Marquee from "./components/site/Marquee";
-import About from "./components/site/About";
-import Services from "./components/site/Services";
-import Projects from "./components/site/Projects";
-import Stages from "./components/site/Stages";
-import Contact from "./components/site/Contact";
-import Booking from "./components/site/Booking";
+
+const About    = dynamic(() => import("./components/site/About"));
+const Services = dynamic(() => import("./components/site/Services"));
+const Projects = dynamic(() => import("./components/site/Projects"));
+const Stages   = dynamic(() => import("./components/site/Stages"));
+const Booking  = dynamic(() => import("./components/site/Booking"));
+const Contact  = dynamic(() => import("./components/site/Contact"));
 
 export default function Home() {
   return (

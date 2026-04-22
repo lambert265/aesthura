@@ -16,6 +16,7 @@ function ProjectCard({ project, delay }: { project: Project; delay: number }) {
             src={project.img}
             alt={project.title}
             fill
+            sizes="(max-width: 768px) 50vw, 40vw"
             className="object-cover transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.03]"
           />
           <div className="absolute top-3 right-3 md:top-4 md:right-4 w-8 h-8 md:w-9 md:h-9 rounded-full bg-ink/60 backdrop-blur-sm flex items-center justify-center transition-transform duration-300 group-hover:-translate-y-1 group-hover:translate-x-1">
@@ -36,8 +37,8 @@ function ProjectCard({ project, delay }: { project: Project; delay: number }) {
 
 export default function Projects({ preview = false }: { preview?: boolean }) {
   const displayed = preview ? projects.slice(0, 2) : projects;
-  const col1 = preview ? [displayed[0]] : [projects[0], projects[2]];
-  const col2 = preview ? [displayed[1]] : [projects[1], projects[3]];
+  const col1 = preview ? [displayed[0]] : [projects[0], projects[2], projects[4]].filter(Boolean);
+  const col2 = preview ? [displayed[1]] : [projects[1], projects[3]].filter(Boolean);
 
   return (
     <section id="projects" className="bg-bg text-fg py-20 md:py-36">

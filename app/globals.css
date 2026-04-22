@@ -154,7 +154,12 @@
   background: hsla(40, 8%, 96%, 0.4);
 }
 
-/* ── Hide default cursor ── */
-*, *::before, *::after {
-  cursor: none !important;
+/* ── Hide default cursor (desktop only) ── */
+@media (pointer: fine) {
+  html, body {
+    cursor: none !important;
+  }
+  a, button, [role="button"], input, textarea, select {
+    cursor: none !important;
+  }
 }

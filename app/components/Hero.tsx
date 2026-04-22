@@ -154,6 +154,8 @@ export default function Hero() {
                   src="/project-1.jpg"
                   alt="Aesthura interior"
                   fill
+                  priority
+                  sizes="260px"
                   className="object-cover"
                 />
                 <div className="absolute inset-0" style={{ background: "linear-gradient(to bottom, transparent 40%, rgba(10,10,10,0.5) 100%)" }} />

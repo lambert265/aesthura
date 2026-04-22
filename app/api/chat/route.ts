@@ -21,6 +21,12 @@ SERVICES:
 5. Furniture & Decor — Curated selection of furniture, textiles, lighting, and objects.
 6. Hospitality & Retail — Brand-led environments for hotels, restaurants, and retail spaces.
 
+RECENT PROJECTS:
+1. The Old GRA Residence — Port Harcourt, 2024 (Residential)
+2. The Ikoyi Kitchen — Lagos, 2024 (Kitchen)
+3. Rumuola Spa Suite — Port Harcourt, 2023 (Bathroom)
+4. The Terrace, Victoria Island — Lagos, 2023 (Hospitality)
+
 PAGES & NAVIGATION:
 - Home: /
 - About: /about
