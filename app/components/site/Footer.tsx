@@ -57,7 +57,7 @@ export default function Footer() {
             >
               hello@aesthura.studio
             </a>
-            <span className="font-body font-light text-[12px] text-fg/45">Lisbon · Milan</span>
+            <span className="font-body font-light text-[12px] text-fg/45">Port Harcourt</span>
           </div>
 
           {/* Bottom */}
@@ -106,7 +106,7 @@ export default function Footer() {
               >
                 hello@aesthura.studio
               </a>
-              <span className="font-body font-light text-[13px] text-fg/55">Lisbon · Milan</span>
+              <span className="font-body font-light text-[13px] text-fg/55">Port Harcourt · Lagos</span>
             </div>
           </div>
 

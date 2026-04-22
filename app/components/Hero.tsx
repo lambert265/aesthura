@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { EASE } from "../lib/animations";
 
@@ -137,15 +138,52 @@ export default function Hero() {
             </motion.p>
           </div>
 
-          <motion.a
-            href="/contact"
-            className="flex-shrink-0 flex items-center justify-center self-start md:self-auto w-36 h-36 md:w-52 md:h-52 rounded-full border border-fg/50 hover:border-fg font-body font-light text-fg text-[11px] md:text-[13px] tracking-[0.06em] text-center transition-[border-color,background] duration-500 hover:bg-fg/10"
-            initial={{ opacity: 0, scale: 0.85 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1, delay: 0.95, ease: EASE.elegant }}
-          >
-            Get in touch
-          </motion.a>
+          {/* Right side — card + CTA */}
+          <div className="flex flex-col sm:flex-row md:flex-col items-start sm:items-end gap-4">
+
+            {/* Studio card */}
+            <motion.div
+              className="relative w-full sm:w-[220px] md:w-[260px] rounded-2xl overflow-hidden border border-fg/15 bg-ink/60 backdrop-blur-md"
+              initial={{ opacity: 0, x: 60 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 1.1, delay: 1.0, ease: EASE.elegant }}
+            >
+              {/* Image slot */}
+              <div className="relative w-full h-[110px] md:h-[130px] overflow-hidden">
+                <Image
+                  src="/project-1.jpg"
+                  alt="Aesthura interior"
+                  fill
+                  className="object-cover"
+                />
+                <div className="absolute inset-0" style={{ background: "linear-gradient(to bottom, transparent 40%, rgba(10,10,10,0.5) 100%)" }} />
+              </div>
+              {/* Card body */}
+              <div className="px-4 py-4 flex flex-col gap-2">
+                <span className="eyebrow text-fg/35 text-[9px]">— Our philosophy</span>
+                <p className="font-body font-light text-[12px] md:text-[13px] leading-relaxed text-fg/80">
+                  We don’t just design interiors — we craft spaces that shape how you feel, live, and belong.
+                </p>
+                <a href="/about" className="mt-1 font-body font-light text-[10px] tracking-[0.08em] text-fg/40 hover:text-fg transition-colors underline underline-offset-2">
+                  About the studio
+                </a>
+              </div>
+            </motion.div>
+
+            {/* CTA circle */}
+            <motion.a
+              href="/contact"
+              className="group flex-shrink-0 flex flex-col items-center justify-center self-start md:self-auto w-36 h-36 md:w-44 md:h-44 rounded-full border border-fg/50 hover:border-fg hover:bg-fg/10 transition-all duration-500 relative overflow-hidden"
+              initial={{ opacity: 0, scale: 0.85 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 1, delay: 0.95, ease: EASE.elegant }}
+            >
+              {/* rotating ring */}
+              <span className="absolute inset-3 rounded-full border border-dashed border-fg/20 group-hover:border-fg/40 transition-colors duration-500" style={{ animation: "rotate-slow 18s linear infinite" }} />
+              <span className="font-aquarium text-fg text-[13px] md:text-[15px] tracking-[0.15em] z-10">Get</span>
+              <span className="font-aquarium text-fg text-[13px] md:text-[15px] tracking-[0.15em] z-10">in touch</span>
+            </motion.a>
+          </div>
         </div>
       </div>
     </section>

@@ -139,8 +139,7 @@ export default function ContactPage() {
           <div className="flex flex-col gap-3">
             <span className="eyebrow text-fg/30 text-[10px]">Studios</span>
             <div className="flex flex-col gap-1 font-body font-light text-[14px] text-fg/65">
-              <span>Lisbon, Portugal</span>
-              <span>Milan, Italy</span>
+              <span>Port Harcourt, Nigeria</span>
             </div>
           </div>
 
@@ -148,7 +147,7 @@ export default function ContactPage() {
             <span className="eyebrow text-fg/30 text-[10px]">Hours</span>
             <div className="flex flex-col gap-1 font-body font-light text-[14px] text-fg/65">
               <span>Mon – Fri, 09:00 – 18:00</span>
-              <span>CET / WET</span>
+              <span>WAT (West Africa Time)</span>
             </div>
           </div>
 

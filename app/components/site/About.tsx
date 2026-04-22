@@ -61,15 +61,16 @@ export default function About() {
 
         <motion.div className="md:col-span-6 md:col-start-7 flex flex-col justify-center gap-6" {...fv(0.2)}>
           <p className="font-body font-light text-[14px] md:text-[15px] leading-relaxed text-fg/70">
-            Founded on the belief that great design is felt before it is seen,
+            Founded in Port Harcourt on the belief that great design is felt before it is seen,
             our studio approaches every project as a long-term collaboration.
             We listen carefully, move deliberately, and build spaces that carry
             meaning well beyond the moment of completion.
           </p>
           <p className="font-body font-light text-[14px] md:text-[15px] leading-relaxed text-fg/70">
-            From private residences to cultural institutions, our work spans
-            scales and geographies — united by a commitment to material
-            honesty, spatial clarity, and enduring craft.
+            From private residences to cultural institutions across Nigeria,
+            our work is united by a commitment to material
+            honesty, spatial clarity, and enduring craft rooted in the richness
+            of our environment and built for the way Nigerians live.
           </p>
         </motion.div>
       </section>

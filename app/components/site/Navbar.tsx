@@ -18,19 +18,22 @@ const rightLinks = [
 
 const allLinks = [...leftLinks, ...rightLinks];
 
-const glass =
-  "bg-fg/[0.06] backdrop-blur-xl border border-fg/[0.12] shadow-[0_4px_24px_rgba(0,0,0,0.35)]";
+const glassBase    = "backdrop-blur-xl border shadow-[0_4px_24px_rgba(0,0,0,0.35)]";
+const glassTop     = `${glassBase} bg-fg/[0.06] border-fg/[0.12]`;
+const glassScrolled = `${glassBase} bg-ink/80 border-fg/[0.18]`;
 
 function NavLinks({
   links,
   pillRef,
   navRef,
   pathname,
+  scrolled,
 }: {
   links: { href: string; label: string }[];
   pillRef?: React.RefObject<HTMLSpanElement>;
   navRef?: React.RefObject<HTMLUListElement>;
   pathname: string;
+  scrolled?: boolean;
 }) {
   return (
     <ul ref={navRef} className="relative flex items-center gap-0.5 text-[13px]">
@@ -47,7 +50,7 @@ function NavLinks({
             href={href}
             data-active={pathname === href}
             className={`relative z-10 px-4 py-1.5 rounded-full font-light tracking-[0.05em] transition-colors duration-200 block
-              ${pathname === href ? "text-fg" : "text-fg/55 hover:text-fg"}`}
+              ${pathname === href ? "text-fg" : scrolled ? "text-fg/75 hover:text-fg" : "text-fg/55 hover:text-fg"}`}
           >
             {label}
           </Link>
@@ -130,8 +133,17 @@ function MobileDrawer({ open, pathname }: { open: boolean; pathname: string }) {
 export default function Navbar() {
   const pathname  = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const pillRef = useRef<HTMLSpanElement>(null);
   const navRef  = useRef<HTMLUListElement>(null);
+
+  useEffect(() => {
+    const handler = () => setScrolled(window.scrollY > 40);
+    window.addEventListener("scroll", handler, { passive: true });
+    return () => window.removeEventListener("scroll", handler);
+  }, []);
+
+  const glass = scrolled ? glassScrolled : glassTop;
 
   useEffect(() => setMobileOpen(false), [pathname]);
 
@@ -154,7 +166,7 @@ export default function Navbar() {
 
         {/* Left pill */}
         <div className={`flex items-center px-2 py-1.5 rounded-full ${glass}`}>
-          <NavLinks links={leftLinks} pathname={pathname} />
+          <NavLinks links={leftLinks} pathname={pathname} scrolled={scrolled} />
         </div>
 
         {/* Center logo pill */}
@@ -170,6 +182,7 @@ export default function Navbar() {
           <NavLinks
             links={rightLinks}
             pathname={pathname}
+            scrolled={scrolled}
             pillRef={pillRef}
             navRef={navRef}
           />

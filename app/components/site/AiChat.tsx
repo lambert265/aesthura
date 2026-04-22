@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, ArrowUp, ArrowUpRight, MessageCircle } from "lucide-react";
+import { X, ArrowUp, ArrowUpRight, MessageCircle, Trash2 } from "lucide-react";
 import Link from "next/link";
 
 interface Message {
@@ -56,11 +56,27 @@ function renderContent(text: string) {
 
 export default function AiChat() {
   const [open, setOpen] = useState(false);
-  const [messages, setMessages] = useState<Message[]>([{ role: "assistant", content: WELCOME }]);
+  const [messages, setMessages] = useState<Message[]>(() => {
+    if (typeof window === "undefined") return [{ role: "assistant", content: WELCOME }];
+    try {
+      const saved = localStorage.getItem("aesthura-chat");
+      return saved ? JSON.parse(saved) : [{ role: "assistant", content: WELCOME }];
+    } catch { return [{ role: "assistant", content: WELCOME }]; }
+  });
   const [input, setInput] = useState("");
   const [streaming, setStreaming] = useState(false);
   const bottomRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
+
+  // persist to localStorage
+  useEffect(() => {
+    if (messages.length > 0) localStorage.setItem("aesthura-chat", JSON.stringify(messages));
+  }, [messages]);
+
+  function clearChat() {
+    localStorage.removeItem("aesthura-chat");
+    setMessages([{ role: "assistant", content: WELCOME }]);
+  }
 
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -184,10 +200,18 @@ export default function AiChat() {
                     <p className="eyebrow text-fg/35 text-[9px]">Studio Assistant · Always on</p>
                   </div>
                 </div>
-                <button onClick={() => setOpen(false)}
-                  className="w-8 h-8 rounded-full bg-fg/[0.07] hover:bg-fg/15 flex items-center justify-center transition-colors">
-                  <X size={14} strokeWidth={1.5} className="text-fg/60" />
-                </button>
+                <div className="flex items-center gap-2">
+                  {messages.length > 1 && (
+                    <button onClick={clearChat}
+                      className="w-8 h-8 rounded-full bg-fg/[0.07] hover:bg-red-500/10 hover:text-red-400 flex items-center justify-center transition-colors">
+                      <Trash2 size={13} strokeWidth={1.5} className="text-fg/40" />
+                    </button>
+                  )}
+                  <button onClick={() => setOpen(false)}
+                    className="w-8 h-8 rounded-full bg-fg/[0.07] hover:bg-fg/15 flex items-center justify-center transition-colors">
+                    <X size={14} strokeWidth={1.5} className="text-fg/60" />
+                  </button>
+                </div>
               </div>
 
               {/* Messages */}
@@ -289,9 +313,14 @@ export default function AiChat() {
                     <ArrowUp size={14} strokeWidth={2} />
                   </motion.button>
                 </form>
-                <p className="text-center font-body font-light text-[10px] text-fg/20 mt-2">
-                  Powered by Groq · Llama 3.3 70B
-                </p>
+                <div className="flex items-center justify-between mt-2 px-1">
+                  <p className="font-body font-light text-[10px] text-fg/20">Powered by Groq · Llama 3.3 70B</p>
+                  {input.length > 0 && (
+                    <span className={`font-body font-light text-[10px] ${input.length > 480 ? "text-red-400" : "text-fg/25"}`}>
+                      {input.length}/500
+                    </span>
+                  )}
+                </div>
               </div>
             </motion.div>
           </>

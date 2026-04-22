@@ -43,7 +43,7 @@ export default function Contact() {
               <div className="flex flex-col gap-1.5">
                 <span className="eyebrow text-fg/35 text-[10px]">Studio</span>
                 <span className="font-body font-light text-[12px] md:text-[14px] text-fg/70">
-                  Lisbon · Milan
+                  Port Harcourt · Lagos
                 </span>
               </div>
             </motion.div>
