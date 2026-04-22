@@ -86,7 +86,7 @@ function Hamburger({ open, toggle }: { open: boolean; toggle: () => void }) {
   );
 }
 
-function MobileDrawer({ open, pathname }: { open: boolean; pathname: string }) {
+function MobileDrawer({ open, pathname, glass }: { open: boolean; pathname: string; glass: string }) {
   return (
     <AnimatePresence>
       {open && (
@@ -96,7 +96,7 @@ function MobileDrawer({ open, pathname }: { open: boolean; pathname: string }) {
           animate={{ height: "auto", opacity: 1 }}
           exit={{ height: 0, opacity: 0 }}
           transition={{ duration: 0.3, ease: "easeInOut" }}
-          className={`overflow-hidden rounded-3xl mt-2 ${glass}`}
+          className={`overflow-hidden rounded-3xl mt-2 ${glassScrolled}`}
         >
           <ul className="flex flex-col px-6 py-4 gap-1">
             {allLinks.map(({ href, label }, i) => (
@@ -200,7 +200,7 @@ export default function Navbar() {
           </Link>
           <Hamburger open={mobileOpen} toggle={() => setMobileOpen((o) => !o)} />
         </div>
-        <MobileDrawer open={mobileOpen} pathname={pathname} />
+        <MobileDrawer open={mobileOpen} pathname={pathname} glass={glass} />
       </div>
     </header>
   );
