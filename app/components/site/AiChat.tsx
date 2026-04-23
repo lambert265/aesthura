@@ -122,7 +122,7 @@ export default function AiChat() {
       }
     } catch (err) {
       console.error(err);
-      setMessages((m) => [...m.slice(0, -1), { role: "assistant", content: "Something went wrong. Please try again or email [hello@aesthura.studio](mailto:hello@aesthura.studio)." }]);
+      setMessages((m) => [...m.slice(0, -1), { role: "assistant", content: "Something went wrong. Please try again or email [mienye488@gmail.com](mailto:mienye488@gmail.com)." }]);
     } finally {
       setStreaming(false);
     }

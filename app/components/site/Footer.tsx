@@ -52,10 +52,10 @@ export default function Footer() {
           <div className="flex flex-col gap-1.5">
             <span className="eyebrow text-fg/30 text-[10px]">Contact</span>
             <a
-              href="mailto:hello@aesthura.studio"
+              href="mailto:mienye488@gmail.com"
               className="font-body font-light text-[12px] text-fg/55 hover:text-fg transition-colors duration-300"
             >
-              hello@aesthura.studio
+              mienye488@gmail.com
             </a>
             <span className="font-body font-light text-[12px] text-fg/45">Port Harcourt</span>
           </div>
@@ -101,12 +101,12 @@ export default function Footer() {
             <div className="col-span-3 col-start-10 flex flex-col gap-3">
               <span className="eyebrow text-fg/30 text-[10px] mb-2">Contact</span>
               <a
-                href="mailto:hello@aesthura.studio"
+                href="mailto:mienye488@gmail.com"
                 className="nav-link font-body font-light text-[13px] text-fg/55 hover:text-fg transition-colors duration-300 w-fit"
               >
-                hello@aesthura.studio
+                mienye488@gmail.com
               </a>
-              <span className="font-body font-light text-[13px] text-fg/55">Port Harcourt · Lagos</span>
+              <span className="font-body font-light text-[13px] text-fg/55">Port Harcourt</span>
             </div>
           </div>
 

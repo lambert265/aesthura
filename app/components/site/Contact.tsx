@@ -34,16 +34,16 @@ export default function Contact() {
               <div className="flex flex-col gap-1.5">
                 <span className="eyebrow text-fg/35 text-[10px]">Email</span>
                 <a
-                  href="mailto:hello@aesthura.studio"
+                  href="mailto:mienye488@gmail.com"
                   className="nav-link font-body font-light text-[12px] md:text-[14px] text-fg/70 hover:text-fg transition-colors duration-300 break-all"
                 >
-                  hello@aesthura.studio
+                  mienye488@gmail.com
                 </a>
               </div>
               <div className="flex flex-col gap-1.5">
                 <span className="eyebrow text-fg/35 text-[10px]">Studio</span>
                 <span className="font-body font-light text-[12px] md:text-[14px] text-fg/70">
-                  Port Harcourt · Lagos
+                  Port Harcourt
                 </span>
               </div>
             </motion.div>
@@ -55,7 +55,7 @@ export default function Contact() {
             {...fadeUpView(0.25)}
           >
             <a
-              href="/#booking"
+              href="mailto:mienye488@gmail.com"
               className="group relative flex items-center justify-center rounded-full bg-fg overflow-hidden flex-shrink-0"
               style={{ width: "clamp(180px, 30vw, 288px)", height: "clamp(180px, 30vw, 288px)" }}
             >
